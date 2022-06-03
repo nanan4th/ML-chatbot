@@ -60,7 +60,7 @@ def tok_pad_seq(text_pred, tokenizer):
     pred_input = tokenizer.texts_to_sequences(text_pred)
     pred_input = np.array(pred_input).reshape(-1)
     pred_input = pad_sequences(
-        [pred_input], maxlen=11, padding='post', truncating='post')
+        [pred_input], maxlen=24, padding='post', truncating='post')
 
     return pred_input
 
@@ -74,7 +74,7 @@ def index():
     pred_input = json_data['text']
 
     # Load intent json
-    with open('data/content.json') as content:
+    with open('data/data.json') as content:
         data = json.load(content)
 
     # Convert to dataframe
@@ -83,7 +83,7 @@ def index():
     responses = content_data[1]
 
     # Load model
-    model = tf.keras.models.load_model('model/my_model.h5')
+    model = tf.keras.models.load_model('model/model_1.h5')
 
     # Encode intent labels
     label_encoder = preprocessing.LabelEncoder()
